@@ -1,21 +1,19 @@
 package foo.bar;
 
 /**
- * Abstraction for polygons with aribtrarly amount of corners, joint by
- * edges.
- * Corners consist of Point objects.
+ * Abstraction for polygons with n corners.
  */
 public abstract class Polygon {
     // --- Attributes ---
     /**
-     *  Coordinates of center of polygon
+     *  Coordinates of center of polygon.
      */
     protected Point center;
 
     // --- Constructors ---
     /**
-     * Constuctor for object Point2d subtype of Point.
-     * @param coordinate  Point for center of polygon.
+     * Main constructor.
+     * @param center  Point for center of polygon.
      */
     public Polygon(Point center) {
         this.center = center;
@@ -32,62 +30,96 @@ public abstract class Polygon {
 
 
 /**
- *  Subtype of polygon in shape of square 
- */
-class Square extends Polygon {
+ *  Quadrilateral polygon, ie 4 corners
+ */ 
+class Quadrilateral extends Polygon {
     // --- Attribute ---
-    private final int width;
+    private int width;
 
     // --- Constuctor ---
     /**
-     * Constuctor for object Square subtype of Polygon.
+     * Main constructor.
      * @param center
-     * @param .
+     * @param width  
+     */ 
+    public Quadrilateral(Point center, int width) {
+        super(center);
+        this.width = width;
+    }
+
+    // --- Setters & Getters ---
+    /**
+     *  @return  Value of width.
+     */
+    public int getWidth() {
+        return width;
+    }
+}
+
+/**
+ *  A square polygon.
+ */
+class Square extends Quadrilateral {
+    // --- Constuctor ---
+    /**
+     * Main constructor.
+     * @param center
+     * @param width  
      */ 
     public Square(Point center, int width) {
-        super(center);
-        this.width = width;
+        super(center, width);
     }
 }
 
 
 /**
- *  Subtype of polygon in shape of rectangle 
+ *  A rectangle polygon in 2d.
  */
-class Rectangle extends Polygon {
+class Rectangle extends Quadrilateral {
     // --- Attribute ---
-    private final int width;
-    private final int height;
+    private int height;
 
     // --- Constuctor ---
     /**
-     * Constuctor for object Rectangle subtype of Polygon.
-     * @param .
-     * @param .
+     * Main constructor.
+     * @param center
+     * @param width
+     * @param height
      */ 
     public Rectangle(Point center, int width, int height) {
-        super(center);
-        this.width = width;
+        super(center, width);
         this.height = height;
+    }
+
+    // --- Setters & Getters ---
+    /**
+     *  @return  Value of height.
+     */
+    public int getHeight() {
+        return height;
     }
 }
 
 
 /**
- *  Subtype of polygon in shape of square 
+ *  Equilateral Triangle in 2d. 
  */
 class Triangle extends Polygon {
     // --- Attribute ---
-    private final int width;
+    /**
+     *  Distance to corners from center
+     */
+    private int distanceToCorners;
 
     // --- Constuctor ---
     /**
-     * Constuctor for object Square subtype of Polygon.
-     * @param .
+     * Main constuctor.
+     * @param center
+     * @param distanceToCorners
      */ 
-    public Triangle(Point center, int width) {
+    public Triangle(Point center, int distanceToCorners) {
         super(center);
-        this.width = width;
+        this.distanceToCorners;
     }
 }
 

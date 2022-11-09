@@ -1,54 +1,30 @@
 package foo.bar;
 
 /**
- *  Abstraction containing cordinates for points in a x-dimensional
- *  space.
+ *  Abstraction for point in n-dimensional spcae.
  */
 public abstract class Point { 
-    /**
-     *  Return the distance between to points (bird path).
-     *      - Does not mutate
-     *      - Allows for multi-threading
-     *      - Point must belong to same dimension
-     *  @param other  Other Point to measure distance to.
-     *  @return distance  Distance between points.
-     */
-    public abstract double distance(Point other);
+    
 }
 
+
 /**
- *  Object containing coordinates for a specific point in 
- *  a 2dimensional space.
- */ 
-class Point2D extends Point {
+ *  Object for point in 1-dimensional space. 
+ */
+class Point1D extends Point {
     // --- Attributes ---
     /**
      *  Value on horizontal axis.
      */
-    private int x;
-    /**
-     *  Value on vertical axis.
-     */
-    private int y; 
+    protected int x;
 
     // --- Constructors ---
     /**
-     * Constuctor for object Point2d subtype of Point.
+     * Main constructor.
      * @param x  Value on horizontal axis.
-     * @param y  Value on vertical axis.
      */
-    public Point2D(int x, int y) {
+    public Point1D(int x) {
         this.x = x;
-        this.y = y;
-    }
-    
-    // --- Methods ---
-    @Override
-    /**
-     * {@inheritDoc}
-     */
-    public double distance(Point other) {
-        return 2.2;
     }
 
     // --- Setters & Getters ---
@@ -58,10 +34,37 @@ class Point2D extends Point {
     public int getX() {
         return this.x;
     }
+}
+
+
+/**
+ *  Object for point in 2-dimensional space. 
+ */ 
+class Point2D extends Point1D {
+    // --- Attributes ---
+    /**
+     *  Value on vertical axis.
+     */
+    private int y; 
+
+    // --- Constructors ---
+    /**
+     * Main constructor.
+     * @param x  value on horizontal axis.
+     * @param y  Value on vertical axis.
+     */
+    public Point2D(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    // --- Setters & Getters ---
     /**
      *  @return  value of attr. y.
      */ 
     public int getY() {
         return this.y;
     }
-} // Point2D
+}
+
+
